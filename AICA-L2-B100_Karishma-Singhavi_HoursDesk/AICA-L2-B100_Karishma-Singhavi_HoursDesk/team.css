@@ -1,0 +1,118 @@
+.member-shell,.team-page{--team-blue:#3192e4}.member-sidebar .brand{margin-bottom:32px}.member-workspace-name{padding:12px 17px;margin:9px 0 24px;background:#2b2623;color:#fff;border-radius:14px;font-weight:700}.member-project-nav{display:flex;align-items:center;gap:11px;width:100%;padding:11px 15px;border:0;border-radius:12px;background:transparent;color:#b9b6b2;text-align:left;cursor:pointer;font:inherit}.member-project-nav.selected,.member-project-nav:hover{background:#2d2927;color:#fff}.project-dot{display:inline-block;flex:none;width:11px;height:11px;border-radius:50%}.member-avatar{display:grid;place-items:center;flex:none;width:37px;height:37px;border-radius:50%;background:#d7ebfc;color:#125d96;font-size:12px;font-weight:800}.member-topline{display:flex;align-items:center;justify-content:space-between;margin:0 0 26px}.member-main .page-heading{margin-bottom:30px}.member-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:25px}.member-stats .stat-card{display:flex;flex-direction:column;gap:10px;min-height:145px}.member-stats .stat-card span{color:#74706e;font-size:13px}.member-stats .stat-card strong{font-size:32px;letter-spacing:-.05em;line-height:1.1;color:#1d1b1a}.member-stats .stat-card small{color:#93908d}.member-stats .status-working{font-size:26px;color:#1975bd}.member-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:18px;margin-bottom:20px}.member-work-card{padding:32px;border-radius:23px;background:linear-gradient(145deg,#162539,#102037 65%,#1a385a);color:#fff;box-shadow:0 18px 45px #19365022}.member-work-card h2{font-size:34px;letter-spacing:-.05em;margin:14px 0 10px}.member-work-card p{color:#bad0e4;line-height:1.55;max-width:520px}.member-work-card .eyebrow{color:#8fc8fb}.member-live-time{font-size:clamp(46px,6vw,76px);font-variant-numeric:tabular-nums;letter-spacing:-.06em;font-weight:700;margin:26px 0}.member-start,.member-stop{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:13px;padding:15px 22px;font:inherit;font-weight:700;cursor:pointer}.member-start{background:#fff;color:#18314c}.member-stop{background:#f8dfde;color:#9f272a}.member-start:hover,.member-stop:hover{filter:brightness(.94)}.member-clock-note{display:block;margin-top:18px;color:#b0c2d4}.member-project-panel,.member-timeline{background:#fff;border-radius:23px;padding:25px}.member-project-panel h2,.member-timeline h2,.team-roster h2{font-size:22px;letter-spacing:-.04em;margin:0}.member-project-card{display:flex;align-items:center;gap:13px;width:100%;padding:15px;margin-top:10px;border:1px solid #e7e8eb;border-radius:13px;background:#fff;text-align:left;cursor:pointer;font:inherit}.member-project-card.selected{border-color:#80bdec;background:#f3f9fe}.member-project-card span:nth-child(2){flex:1;min-width:0}.member-project-card strong,.member-project-card small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.member-project-card small{margin-top:3px;color:#868787}.member-project-card b{color:#1677c5}.member-timeline .section-row{align-items:flex-start;margin-bottom:16px}.member-timeline .section-row p{color:#888;margin:6px 0 0}.member-timeline .section-row>strong{font-size:24px}.member-session-row{display:flex;align-items:center;gap:15px;padding:15px 0;border-top:1px solid #eee}.member-session-row>span:nth-child(2){flex:1;min-width:0}.member-session-row b,.member-session-row small{display:block}.member-session-row small{margin-top:4px;color:#888}.member-session-row strong{font-variant-numeric:tabular-nums}.session-line-dot{width:11px;height:11px;border-radius:50%;background:#b4c0cb;flex:none}.session-line-dot.active{background:#3192e4;box-shadow:0 0 0 5px #3192e42a}.member-empty{padding:28px 0;color:#8c8a89;line-height:1.5}.team-banner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:30px 33px;margin-bottom:19px;border-radius:22px;background:linear-gradient(115deg,#142438,#25476c);color:#fff}.team-banner .eyebrow{color:#92c7ee}.team-banner h2{font-size:32px;letter-spacing:-.05em;margin:8px 0}.team-banner p{margin:0;color:#bdd3e7}.team-banner .primary-btn{background:#fff;color:#153656;white-space:nowrap}.team-roster{padding:24px;margin-bottom:19px}.team-roster-row{display:flex;align-items:center;gap:14px;border-top:1px solid #ecebea;padding:17px 0}.team-roster-person{flex:1;min-width:0}.team-roster-person b,.team-roster-person small{display:block}.team-roster-person small{color:#85817f;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.team-state{border-radius:30px;background:#f2f0ed;color:#777;padding:7px 11px;font-size:12px;white-space:nowrap}.team-state.working{background:#e4f4ff;color:#1675b8}.project-checks{display:grid;gap:8px;max-height:230px;overflow:auto;margin-top:8px}.project-checks label{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid #e7e7e7;border-radius:10px;cursor:pointer}.project-checks input{accent-color:#2894e7}.member-setup{padding:26px}.member-setup p{color:#777}.team-live-strip{margin-bottom:18px;padding:17px 22px;background:#e7f4fd;border-radius:15px;color:#1c506f}.team-live-strip strong{margin-right:14px}.team-live-strip span{font-variant-numeric:tabular-nums}@media(max-width:900px){.member-grid{grid-template-columns:1fr}.member-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:700px){.member-sidebar{display:none}.member-main{margin-left:0}.member-stats{grid-template-columns:1fr}.member-work-card{padding:24px}.team-banner{align-items:flex-start;flex-direction:column;padding:25px}.team-roster-row{flex-wrap:wrap}.team-roster-person{min-width:calc(100% - 55px)}.team-state{margin-left:51px}}
+
+/* Keep the account form and project choices aligned at every modal width. */
+.modal:has(#team-form){width:min(100%,580px);padding:30px}
+#team-form .project-assignment-field,
+#team-form .full,
+#team-form .form-actions{grid-column:1/-1}
+#team-form[data-kind="invite"]>.field:has(input[name="memberPassword"]){grid-column:1/-1}
+.project-assignment-field{gap:9px;margin-top:2px}
+.project-assignment-field .field-title{display:flex;align-items:baseline;justify-content:space-between;gap:12px;color:#394a5b;font-size:12px;font-weight:700}
+.project-assignment-field .field-title small{color:#929da8;font-size:11px;font-weight:500}
+.project-checks{gap:9px;margin-top:0;padding:2px 3px 2px 1px}
+.project-checks .project-check{display:grid;grid-template-columns:11px minmax(0,1fr) 19px;align-items:center;gap:13px;min-height:54px;padding:13px 15px;background:#fff;border:1px solid #dfe7ef;border-radius:12px;cursor:pointer;transition:background .15s,border-color .15s,box-shadow .15s}
+.project-checks .project-check:hover{border-color:#9ac8ed;background:#f7fbff}
+.project-checks .project-check:has(input:checked){border-color:#78b9ed;background:#f0f8ff;box-shadow:0 0 0 1px #d5eafb inset}
+.project-checks .project-check-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#26394b;font-size:13px;font-weight:600}
+.project-checks .project-check input[type="checkbox"]{display:block;width:18px;height:18px;min-width:18px;margin:0;padding:0;justify-self:end;accent-color:#2389d4;cursor:pointer}
+#team-form>p.full{margin:0;color:#7d8994;font-size:11px;line-height:1.5}
+@media(max-width:700px){.modal:has(#team-form){padding:24px 20px}.project-assignment-field .field-title{align-items:flex-start;flex-direction:column;gap:3px}}
+
+/* Member workspace: compact controls and predictable alignment. */
+.member-shell{background:#112031}
+.member-main{padding:27px 32px 38px}
+.member-main>*{max-width:1320px;margin-left:auto;margin-right:auto}
+.member-sidebar .brand{margin-bottom:17px;padding-bottom:12px}
+.member-sidebar .sidebar-label{margin-top:18px}
+.member-workspace-name{margin:4px 0 18px;padding:10px 13px;background:#22364d;border:1px solid #30485f;color:#f3f8fe;font-size:13px}
+.member-project-links{display:grid;gap:3px}
+.member-project-nav{padding:9px 12px;font-size:12px}
+.member-project-nav.selected,.member-project-nav:hover{background:#28405a}
+.member-sidebar .sidebar-footer{display:grid;grid-template-columns:36px minmax(0,1fr);gap:5px 10px;align-items:center;padding-top:13px}
+.member-sidebar .sidebar-footer .member-avatar{grid-column:1;grid-row:1;width:35px;height:35px}
+.member-sidebar .member-sidebar-person{grid-column:2;grid-row:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
+.member-sidebar .sidebar-signout{grid-column:1/-1;grid-row:2}
+.member-topline{margin-bottom:18px}
+.member-topline .signout-button{display:none}
+.member-heading .eyebrow{font-size:10px}
+.member-heading h1{font:700 clamp(27px,2.3vw,34px)/1.2 Manrope,sans-serif;letter-spacing:-.045em;margin:7px 0 5px;color:#182a3b}
+.member-heading p{font-size:13px;color:#7a8895;margin:0}
+.member-mobile-tabs{display:none}
+.member-compact-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px;margin-bottom:14px}
+.member-compact-stats .stat-card{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-height:78px;padding:15px 20px;border-radius:16px;gap:5px;box-shadow:0 5px 20px #1d38540b}
+.member-compact-stats .stat-card span{font-size:11px}
+.member-compact-stats .stat-card strong,.member-compact-stats .status-working{font-size:24px;line-height:1.2}
+.member-grid{grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);align-items:stretch;gap:14px;margin-bottom:14px}
+.member-work-card{padding:22px 24px;border-radius:18px;box-shadow:0 10px 28px #19365017}
+.member-work-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.member-status-pill{color:#a9bfd3;font-size:11px;font-weight:700;white-space:nowrap}
+.member-status-pill.working{color:#79caad}
+.member-work-card h2{font-size:22px;letter-spacing:-.035em;margin:11px 0 5px}
+.member-work-card p{font-size:12px;line-height:1.45;margin:0}
+.member-clock-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:19px}
+.member-live-time{font-size:clamp(36px,3.5vw,48px);line-height:1.1;margin:0}
+.member-start,.member-stop{padding:11px 17px;font-size:12px;border-radius:10px}
+.member-clock-note{margin-top:12px;font-size:11px}
+.member-project-panel,.member-timeline{padding:20px;border-radius:18px}
+.member-project-panel h2,.member-timeline h2{font-size:18px}
+.member-project-card{padding:10px 12px;margin-top:8px;border-radius:10px}
+.member-project-card strong{font-size:12px}
+.member-project-card small,.member-project-card b{font-size:11px}
+.member-timeline .section-row{margin-bottom:8px}
+.member-timeline .section-row>strong{font-size:18px}
+.member-timeline .member-empty{padding:12px 0}
+.member-session-row{padding:11px 0;font-size:12px}
+
+/* Leave requests and review. */
+.member-leave-grid{display:grid;grid-template-columns:minmax(280px,.85fr) minmax(0,1.15fr);gap:14px;margin-top:20px;align-items:start}
+.member-leave-card,.member-leave-setup,.team-leave-queue,.team-leave-setup{padding:23px;border-radius:18px}
+.member-leave-card h2,.member-leave-setup h2,.team-leave-queue h2,.team-leave-setup h2{font-size:19px;letter-spacing:-.035em;margin:6px 0}
+.member-leave-card>p,.member-leave-setup p,.team-leave-setup p{color:#7b8793;font-size:12px;margin:0 0 17px}
+.member-leave-form{display:grid;gap:13px;margin-top:18px}
+.member-leave-form label{display:grid;gap:6px;color:#526172;font-size:11px;font-weight:700}
+.member-leave-form input,.member-leave-form select,.member-leave-form textarea{width:100%;border:1px solid #dce5ed;border-radius:10px;background:#fff;color:#253647;padding:10px 12px;outline:none;font-size:12px}
+.member-leave-form input:focus,.member-leave-form select:focus,.member-leave-form textarea:focus{border-color:#62a9e1;box-shadow:0 0 0 3px #dceefa}
+.member-leave-dates{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.member-leave-form .primary-btn{justify-self:start;margin-top:4px}
+.member-refresh{font-size:11px!important;padding:8px 11px!important}
+.member-leave-request{border-top:1px solid #e8edf2;padding:14px 0}
+.member-leave-request>div:first-child{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.member-leave-request strong{font-size:13px;color:#26384a}
+.member-leave-request>small{display:block;margin-top:6px;color:#7d8996;font-size:11px}
+.member-leave-request p{font-size:12px;color:#5a6876;margin:9px 0 0;white-space:pre-wrap}
+.leave-status{display:inline-flex;align-items:center;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:700;white-space:nowrap;background:#fff3de;color:#9c681a}
+.leave-status.approved{background:#e5f5eb;color:#2a7551}
+.leave-status.rejected{background:#fce9ea;color:#aa3646}
+.leave-review-reason{display:grid;gap:4px;margin-top:10px;padding:10px 12px;background:#f6f8fa;border-radius:9px;font-size:11px;color:#4c5d6d}
+.team-leave-queue{margin-bottom:18px}
+.team-leave-queue .section-row{align-items:center;margin-bottom:10px}
+.team-leave-count{background:#fff2dd;color:#95631f;border-radius:999px;padding:7px 11px;font-size:11px;font-weight:700}
+.team-leave-row{display:flex;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid #e8edf2;padding:14px 0}
+.team-leave-details{min-width:0}
+.team-leave-details strong{display:block;color:#26394b;font-size:13px}
+.team-leave-details strong span{color:#6e7c89;font-weight:500}
+.team-leave-details small{display:block;margin-top:4px;color:#85919b;font-size:11px}
+.team-leave-details p{margin:7px 0 0;color:#5c6875;font-size:12px;white-space:pre-wrap}
+.team-leave-actions{display:flex;gap:8px;flex:none}
+.team-leave-actions button{font-size:11px;padding:9px 13px}
+.team-reviewed{border-top:1px solid #e8edf2;margin-top:8px;padding-top:14px}
+.team-reviewed h3{font-size:12px;color:#607080;margin:0 0 5px}
+.team-reviewed-row{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:8px 0;font-size:12px}
+.team-reviewed-row small{display:block;color:#8a98a5;font-size:10px;margin-top:2px}
+@media(max-width:900px){.member-grid,.member-leave-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.member-main{padding:18px 16px 28px}.member-topline{margin-bottom:18px}.member-topline .signout-button{display:inline-flex;font-size:11px;padding:8px 10px}.member-mobile-tabs{display:flex;gap:5px;margin-top:17px;margin-bottom:14px;padding:4px;background:#e9eef3;border-radius:11px}.member-mobile-tabs button{flex:1;border:0;border-radius:8px;background:transparent;color:#667789;padding:9px;font-weight:700;font-size:12px}.member-mobile-tabs button.active{background:#fff;color:#1d4f79;box-shadow:0 2px 8px #1b354818}.member-compact-stats{gap:8px;margin-top:0}.member-compact-stats .stat-card{padding:12px 15px;min-width:0;min-height:67px}.member-compact-stats .stat-card span{font-size:10px}.member-compact-stats .stat-card strong{font-size:19px}.member-work-card,.member-project-panel,.member-timeline,.member-leave-card{padding:18px}.member-clock-row{align-items:flex-start}.member-live-time{font-size:40px}.team-leave-row{align-items:flex-start;flex-direction:column}.team-leave-actions{width:100%}.team-leave-actions button{flex:1}.team-reviewed-row{align-items:flex-start}}
+@media(max-width:390px){.member-compact-stats .stat-card{padding:11px}.member-compact-stats .stat-card strong{font-size:18px}.member-leave-dates{grid-template-columns:1fr}}
+
+.project-card-actions{display:flex;align-items:center;gap:8px;min-width:0}
+.project-assign-button{border:1px solid #d6e6f3;border-radius:9px;background:#eff7fd;color:#175c8d;padding:8px 10px;font-size:11px;font-weight:700;white-space:nowrap;cursor:pointer}
+.project-assign-button:hover{background:#dceefa;border-color:#8fc5e9}
+.assignment-target{display:flex;align-items:center;gap:12px;border:1px solid #e2eaf1;background:#f6f9fc;border-radius:13px;padding:14px;margin-bottom:17px}
+.assignment-target .project-dot{width:13px;height:13px}
+.assignment-target small,.assignment-target strong{display:block}
+.assignment-target small{color:#8496a5;font-size:10px;letter-spacing:.12em;font-weight:700}
+.assignment-target strong{margin-top:3px;color:#22364a;font-size:14px}
+.assignment-current{display:grid;gap:5px;margin-bottom:18px}
+.assignment-current span{color:#81909d;font-size:11px}
+.assignment-current strong{color:#2b4053;font-size:12px;font-weight:600;line-height:1.5}
+.assignment-empty{margin:0!important;color:#728292!important;font-size:12px!important}
+#project-assignment-form .form-actions{margin-top:3px}

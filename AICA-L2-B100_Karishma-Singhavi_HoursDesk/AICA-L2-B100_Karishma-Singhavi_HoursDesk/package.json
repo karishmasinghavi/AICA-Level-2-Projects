@@ -1,0 +1,13 @@
+{
+  "name": "hoursdesk",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-static.mjs",
+    "verify": "node scripts/verify-workflows.mjs && node scripts/verify-session.mjs && node scripts/verify-team.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.76.1"
+  }
+}
