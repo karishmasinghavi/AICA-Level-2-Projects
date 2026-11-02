@@ -3,45 +3,39 @@
 **Submitted by:** Karishma Singhavi  
 **Project type:** Workforce time and attendance web app
 
-HoursDesk is a responsive workspace for recording work hours, planning shifts, tracking time off, and reviewing team activity. It uses Supabase email/password authentication and saves workspace data in a private database row protected by Row Level Security (RLS). The interface is built with HTML, CSS, and JavaScript and has no frontend build dependencies.
+HoursDesk is a responsive workspace for teams to record time, manage projects and shifts, and review leave. It is built with HTML, CSS, and JavaScript, with Supabase for authentication and data and a Vercel Function for team accounts.
 
-## What it does
+## Features
 
-- Sign up, confirm email, sign in, reset password, and sign out.
-- Clock in and out, take breaks, and create time entries.
-- Add and approve time entries; filter and export timesheets as CSV.
-- Plan shifts, record leave requests, and review time corrections.
-- Maintain a team directory and projects with hour budgets.
-- View dashboard metrics and reports from saved records.
-- Use the workspace on desktop and mobile screens.
+- Workspace-owner sign-up, login, password reset, and private workspace data.
+- Owner time clock, timesheets, shifts, corrections, time off, projects, reports, and CSV export.
+- Team-member accounts created by the owner. Login details are shared manually; no invitation email is sent.
+- Multiple project assignments per member. Owners can add projects to an existing account from **People → Manage projects** or **Projects → Assign member**.
+- Member dashboard with project-specific work timers, live elapsed time, work history, and leave requests.
+- Owner approval or rejection of member leave, with the decision and rejection reason visible to the member.
+- Responsive desktop and mobile layouts.
 
-## Set up and run locally
+## Set up
 
-1. Create your own [Supabase](https://supabase.com/) project.
-2. In its SQL Editor, run [`supabase/schema.sql`](supabase/schema.sql). This creates the workspace table and owner-only RLS policies.
-3. In [`src/config.js`](src/config.js), replace `YOUR_PROJECT_REF` and `YOUR_PUBLIC_ANON_KEY` with your project's URL and **public anon key** from Supabase Project Settings. Never put the database password or service-role key in this file.
-4. In Supabase Authentication settings, enable email/password sign-in. Set the Site URL to `http://127.0.0.1:4173` and allow that URL for email confirmation and password recovery redirects.
-5. From this folder, start a local server:
+1. Create a [Supabase](https://supabase.com/) project. Run `supabase/schema.sql`, then `supabase/team_access.sql`, then `supabase/team_leave_requests.sql` in its SQL Editor.
+2. Replace the placeholders in `src/config.js` with that project's URL and **public anon key**. Never put a database password or secret key in browser code.
+3. In Supabase Authentication settings, enable email/password sign-in and configure your deployed URL as the Site URL and an allowed redirect URL.
+4. In Vercel, import this folder as a project. Its build command is `npm run build` and output directory is `dist` (also set in `vercel.json`). Add `SUPABASE_URL` and `SUPABASE_SECRET_KEY` as server environment variables, then deploy.
+5. Create the owner account, confirm its email, sign in, and create a project. Under **People**, create a member login and assign one or more projects. Give the credentials to the intended member privately.
 
-   ```powershell
-   python -m http.server 4173 --bind 127.0.0.1
-   ```
+The server key is used only in `api/team.mjs` and is not included in this submission. The team account and work-session endpoints require the Vercel Function; a plain static server does not provide `/api/team`.
 
-6. Open `http://127.0.0.1:4173`, create an account, confirm the email, then sign in. A new account starts with an empty workspace.
-
-## Verify the project
-
-With Node.js installed, run:
+## Run and verify locally
 
 ```powershell
-node scripts/verify-workflows.mjs
-node scripts/verify-session.mjs
+npm ci
+npm run verify
+npm run build
+python -m http.server 4173 --bind 127.0.0.1
 ```
 
-These checks use in-memory fixtures and do not write sample records to Supabase. To assemble a static `dist/` folder for review, run `node scripts/build-static.mjs`.
+Open `http://127.0.0.1:4173` for the static interface. `npm run verify` runs in-memory workflow checks and does not add sample records to Supabase.
 
-## Current scope
+## Scope
 
-The signed-in workspace owner manages the team directory. Adding a person creates a directory record, **not** a separate employee login. Employees cannot yet submit their own leave requests or access a personal dashboard. Invitations, manager roles, payroll, GPS, and email notifications are future work. Each separate sign-up currently creates its own private workspace.
-
-The submission contains no Supabase password or live project key. The public anon-key placeholder must be replaced with the reviewer's own project details before using the app.
+HoursDesk does not send invitation emails or perform payroll, GPS tracking, or leave accrual. Members use the password set by their workspace owner. Each public owner sign-up creates its own private workspace.

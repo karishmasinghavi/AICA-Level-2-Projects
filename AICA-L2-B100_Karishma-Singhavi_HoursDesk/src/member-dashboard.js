@@ -1,0 +1,46 @@
+const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+const elapsed = session => Math.max(0, new Date(session.stopped_at || Date.now()) - new Date(session.started_at));
+const time = ms => { const seconds = Math.floor(ms / 1000); return `${String(Math.floor(seconds / 3600)).padStart(2, '0')}:${String(Math.floor(seconds / 60) % 60).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`; };
+const hours = ms => `${(ms / 3600000).toFixed(1)}h`;
+const dateTime = value => new Date(value).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' });
+const date = value => new Date(`${value}T00:00:00`).toLocaleDateString([], { dateStyle: 'medium' });
+const today = () => new Date().toLocaleDateString('en-CA');
+
+function projectList(projects, sessions, selected) {
+  if (!projects.length) return `<div class="member-empty">Your workspace owner has not assigned a project yet.</div>`;
+  return projects.map(project => {
+    const total = sessions.filter(session => session.project_id === project.id).reduce((sum, session) => sum + elapsed(session), 0);
+    return `<button class="member-project-card ${selected?.id === project.id ? 'selected' : ''}" data-action="member-project" data-id="${esc(project.id)}"><span class="project-dot" style="background:${esc(project.color || '#76bafa')}"></span><span><strong>${esc(project.name)}</strong><small>${esc(project.client || 'Internal project')}</small></span><b>${hours(total)}</b></button>`;
+  }).join('');
+}
+
+function timeline(project, sessions) {
+  if (!project) return '';
+  const rows = sessions.filter(session => session.project_id === project.id);
+  const total = rows.reduce((sum, session) => sum + elapsed(session), 0);
+  return `<section class="member-timeline card"><div class="section-row"><div><span class="eyebrow">PROJECT TIMELINE</span><h2>${esc(project.name)}</h2></div><strong>${hours(total)}</strong></div>${rows.length ? rows.map(session => `<div class="member-session-row"><span class="session-line-dot ${session.stopped_at ? '' : 'active'}"></span><span><b>${session.stopped_at ? 'Work completed' : 'Working now'}</b><small>${dateTime(session.started_at)}${session.stopped_at ? ` → ${dateTime(session.stopped_at)}` : ' → live'}</small></span><strong>${session.stopped_at ? time(elapsed(session)) : `<span data-live-start="${esc(session.started_at)}">${time(elapsed(session))}</span>`}</strong></div>`).join('') : `<div class="member-empty">No work sessions yet. Start work to create the first entry.</div>`}</section>`;
+}
+
+function overview(projects, sessions, selected) {
+  const active = sessions.find(session => !session.stopped_at);
+  const total = sessions.reduce((sum, session) => sum + elapsed(session), 0);
+  const activeProject = projects.find(project => project.id === active?.project_id);
+  return `<div class="member-compact-stats"><div class="stat-card"><span>Assigned projects</span><strong>${projects.length}</strong></div><div class="stat-card"><span>Hours recorded</span><strong>${hours(total)}</strong></div></div>
+    <div class="member-grid"><section class="member-work-card"><div class="member-work-heading"><span class="eyebrow">TIME CLOCK</span><span class="member-status-pill ${active ? 'working' : ''}">${active ? '● In progress' : '● Ready to start'}</span></div><h2>${active ? esc(activeProject?.name || 'Work in progress') : 'Ready for your workday'}</h2><p>${active ? 'Your time keeps counting until you stop work.' : 'Select a project and start tracking your time.'}</p><div class="member-clock-row"><div class="member-live-time">${active ? `<span data-live-start="${esc(active.started_at)}">${time(elapsed(active))}</span>` : '00:00:00'}</div>${active ? `<button class="member-stop" data-action="member-stop">Stop work</button>` : selected ? `<button class="member-start" data-action="member-start" data-id="${esc(selected.id)}">Start work ↗</button>` : ''}</div><small class="member-clock-note">${active ? `Started ${dateTime(active.started_at)}` : selected ? `Selected project: ${esc(selected.name)}` : 'Choose a project when one is assigned.'}</small></section>
+    <section class="member-project-panel"><div class="section-row"><h2>My projects</h2><span class="muted">${projects.length} assigned</span></div>${projectList(projects, sessions, selected)}</section></div>${timeline(selected, sessions)}`;
+}
+
+function leaveView(team) {
+  if (!team.leaveReady) return `<section class="card member-leave-setup"><h2>Time off is being set up</h2><p>Your workspace owner needs to apply the team leave database update before requests can be submitted.</p></section>`;
+  const leaves = team.leaves || [];
+  return `<div class="member-leave-grid"><section class="card member-leave-card"><span class="eyebrow">NEW REQUEST</span><h2>Ask for time off</h2><p>Your workspace owner will review your request here.</p><form id="member-leave-form" class="member-leave-form"><label>Leave type<select name="type"><option>Vacation</option><option>Sick leave</option><option>Personal</option><option>Unpaid leave</option></select></label><div class="member-leave-dates"><label>From<input name="from" type="date" value="${today()}" required></label><label>To<input name="to" type="date" value="${today()}" required></label></div><label>Reason or note<textarea name="note" rows="3" maxlength="500" placeholder="Add details for your manager (optional)"></textarea></label><button class="primary-btn" type="submit">Submit leave request ↗</button></form></section><section class="card member-leave-card"><div class="section-row"><h2>My requests</h2><button class="outline-btn member-refresh" data-action="member-refresh">Refresh status</button></div>${leaves.length ? leaves.map(leave => `<div class="member-leave-request"><div><strong>${esc(leave.leave_type)}</strong><span class="leave-status ${esc(leave.status.toLowerCase())}">${esc(leave.status)}</span></div><small>${esc(date(leave.starts_on))} – ${esc(date(leave.ends_on))}</small>${leave.note ? `<p>${esc(leave.note)}</p>` : ''}${leave.review_reason ? `<div class="leave-review-reason"><b>${leave.status === 'Rejected' ? 'Reason for rejection' : 'Manager note'}</b><span>${esc(leave.review_reason)}</span></div>` : ''}</div>`).join('') : `<div class="member-empty">No requests yet. New requests will show as pending until your owner reviews them.</div>`}</section></div>`;
+}
+
+export function memberDashboard(team, mark, icon, selectedProjectId = '', tab = 'overview') {
+  const { profile, projects, sessions } = team;
+  const active = sessions.find(session => !session.stopped_at);
+  const selected = projects.find(project => project.id === selectedProjectId) || projects.find(project => project.id === active?.project_id) || projects[0];
+  const pending = (team.leaves || []).filter(leave => leave.status === 'Pending').length;
+  const initials = profile.name.split(/\s+/).map(word => word[0]).slice(0, 2).join('').toUpperCase();
+  return `<div class="shell member-shell"><aside class="sidebar member-sidebar"><div class="brand">${mark} HoursDesk<span style="color:#71bafa">.</span></div><div class="sidebar-label">YOUR WORKSPACE</div><div class="member-workspace-name">${esc(profile.workspace)}</div><nav class="nav member-nav"><button class="${tab === 'overview' ? 'active' : ''}" data-action="member-tab" data-tab="overview">${icon('dashboard', 18)} Overview</button><button class="${tab === 'leave' ? 'active' : ''}" data-action="member-tab" data-tab="leave">${icon('leave', 18)} Time off${pending ? `<span class="nav-count">${pending}</span>` : ''}</button></nav><div class="section-head">ASSIGNED PROJECTS</div><div class="member-project-links">${projects.map(project => `<button class="member-project-nav ${tab === 'overview' && selected?.id === project.id ? 'selected' : ''}" data-action="member-project" data-id="${esc(project.id)}"><span class="project-dot" style="background:${esc(project.color || '#76bafa')}"></span>${esc(project.name)}</button>`).join('')}</div><div class="sidebar-spacer"></div><div class="sidebar-footer"><span class="member-avatar">${esc(initials)}</span><span class="member-sidebar-person">${esc(profile.name)}<small>${esc(profile.role)}</small></span><button class="sidebar-signout" data-action="signout" aria-label="Sign out">${icon('logout', 16)}<span>Sign out</span></button></div></aside><main class="main member-main"><div class="member-topline"><span class="eyebrow">${esc(profile.workspace)} / TEAM MEMBER</span><button class="outline-btn signout-button" data-action="signout">Sign out</button></div><div class="member-heading"><div><span class="eyebrow">${tab === 'leave' ? 'TIME OFF' : 'YOUR WORKDAY'}</span><h1>${tab === 'leave' ? 'Time off' : `Hello, ${esc(profile.name.split(' ')[0])}.`}</h1><p>${tab === 'leave' ? 'Request leave and follow your manager’s decision.' : 'Track your hours across the projects assigned to you.'}</p></div></div><div class="member-mobile-tabs"><button class="${tab === 'overview' ? 'active' : ''}" data-action="member-tab" data-tab="overview">Overview</button><button class="${tab === 'leave' ? 'active' : ''}" data-action="member-tab" data-tab="leave">Time off${pending ? ` (${pending})` : ''}</button></div>${tab === 'leave' ? leaveView(team) : overview(projects, sessions, selected)}</main></div>`;
+}

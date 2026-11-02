@@ -133,3 +133,15 @@ export async function saveWorkspace(data) {
     body:JSON.stringify({ owner_id:user.id, data })
   }, true);
 }
+
+export async function teamRequest(action, body) {
+  if (!await ensureSession()) throw new Error('Please sign in again.');
+  const response = await fetch(`/api/team?action=${encodeURIComponent(action)}`, {
+    method: body ? 'POST' : 'GET',
+    headers: { Authorization: `Bearer ${session.access_token}`, ...(body ? { 'Content-Type': 'application/json' } : {}) },
+    ...(body ? { body: JSON.stringify(body) } : {})
+  });
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(result.error || `Team request failed (${response.status})`);
+  return result;
+}

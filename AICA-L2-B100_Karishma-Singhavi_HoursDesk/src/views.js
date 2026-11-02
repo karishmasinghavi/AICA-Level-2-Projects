@@ -73,7 +73,7 @@ function team(d,ctx) {
 
 function projectCard(d,p) {
   const used=projectHours(d,p.id),pct=p.budget?Math.round(used/p.budget*100):0;
-  return `<div class="card project-card"><div class="project-symbol" style="background:${safe(p.color||'#d7e8f7')}">↗</div><h3>${safe(p.name)}</h3><p>${safe(p.client||'Internal')} · ${safe(p.description||'No description')}</p><div class="bottom"><div class="metric"><span>Hours used</span><span>${fmt(used)} / ${p.budget}h</span></div><div class="progress"><i style="width:${Math.min(100,pct)}%"></i></div><div class="work-card-footer">${badge(pct>=100?'At risk':'On track')}<button class="icon-button" data-action="open-modal" data-modal="project" data-id="${p.id}" title="Edit project">✎</button></div></div></div>`;
+  return `<div class="card project-card"><div class="project-symbol" style="background:${safe(p.color||'#d7e8f7')}">↗</div><h3>${safe(p.name)}</h3><p>${safe(p.client||'Internal')} · ${safe(p.description||'No description')}</p><div class="bottom"><div class="metric"><span>Hours used</span><span>${fmt(used)} / ${p.budget}h</span></div><div class="progress"><i style="width:${Math.min(100,pct)}%"></i></div><div class="work-card-footer">${badge(pct>=100?'At risk':'On track')}<div class="project-card-actions"><button class="project-assign-button" data-action="open-modal" data-modal="assignProject" data-id="${safe(p.id)}">Assign member</button><button class="icon-button" data-action="open-modal" data-modal="project" data-id="${safe(p.id)}" title="Edit project" aria-label="Edit ${safe(p.name)}">✎</button></div></div></div></div>`;
 }
 
 function projects(d,ctx) {
